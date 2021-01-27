@@ -1,0 +1,56 @@
+#glass {
+    width: 100%;
+    padding-bottom: 100%;
+
+    position: relative;
+
+    border: 5px solid #fff;
+
+    box-shadow: 0 0 10px #000000;
+    -webkit-box-shadow: 0 0 10px #000000;
+    -moz-box-shadow: 0 0 10px #000000;
+    -o-box-shadow: 0 0 10px #000000;
+
+    background: radial-gradient(#05fbfb, #29abe3);
+    background: -webkit-radial-gradient(#05fbfb, #29abe3);
+    background: -moz-radial-gradient(#05fbfb, #29abe3);
+    background: -o-radial-gradient(#05fbfb, #29abe3);
+
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -o-border-radius: 100%;
+}
+
+.spin {
+    -webkit-animation:spin 1s linear infinite;
+    -moz-animation:spin 1s linear infinite;
+    animation:spin 1s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+#reflect {
+    position: absolute;
+
+    width: 50%;
+    height: 30%;
+    margin: 5% 0 0 25%;
+    background: #fff;
+    opacity: 0.6;
+
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -o-border-radius: 100%;
+}
+
+#image {
+    position: absolute;
+
+    margin: 10% 0 0 10%;
+
+    width: 80%;
+    opacity: 0.5;
+}
