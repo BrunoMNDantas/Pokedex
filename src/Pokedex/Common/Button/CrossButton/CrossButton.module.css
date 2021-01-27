@@ -1,0 +1,177 @@
+#cross {
+    width: 100%;
+    height: 100%;
+}
+
+#topRow, #middleRow, #bottomRow {
+    width: 100%;
+    height: 33.3%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#topRow > div, #middleRow > div, #bottomRow > div {
+    width: 33.3%;
+    height: 100%;
+
+    background-color: #222;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.topButton {
+    box-shadow: -3px 2px #010101;
+    -webkit-box-shadow: -3px 2px #010101;
+    -moz-box-shadow: -3px 2px #010101;
+    -o-box-shadow: -3px 2px #010101;
+
+    border-top-left-radius: 15%;
+    -webkit-border-top-left-radius: 15%;
+    -moz-border-top-left-radius: 15%;
+    -o-border-top-left-radius: 15%;
+
+    border-top-right-radius: 15%;
+    -webkit-border-top-right-radius: 15%;
+    -moz-border-top-right-radius: 15%;
+    -o-border-top-right-radius: 15%;
+}
+
+.topButton:active {
+    box-shadow: -2px 1px #010101;
+    -webkit-box-shadow: -2px 1px #010101;
+    -moz-box-shadow: -2px 1px #010101;
+    -o-box-shadow: -2px 1px #010101;
+
+    transform: translateY(2%);
+}
+
+.leftButton {
+    z-index: 2;
+    
+    box-shadow: -3px 2px #010101;
+    -webkit-box-shadow: -3px 2px #010101;
+    -moz-box-shadow: -3px 2px #010101;
+    -o-box-shadow: -3px 2px #010101;
+
+    border-top-left-radius: 15%;
+    -webkit-border-top-left-radius: 15%;
+    -moz-border-top-left-radius: 15%;
+    -o-border-top-left-radius: 15%;
+
+    border-bottom-left-radius: 15%;
+    -webkit-border-bottom-left-radius: 15%;
+    -moz-border-bottom-left-radius: 15%;
+    -o-border-bottom-left-radius: 15%;
+}
+
+.leftButton:active {
+    box-shadow: -2px 1px #010101;
+    -webkit-box-shadow: -2px 1px #010101;
+    -moz-box-shadow: -2px 1px #010101;
+    -o-box-shadow: -2px 1px #010101;
+
+    transform: translateY(2%);
+}
+
+#midButton {
+    z-index: 1;
+
+    box-shadow: -3px 2px #010101;
+    -webkit-box-shadow: -3px 2px #010101;
+    -moz-box-shadow: -3px 2px #010101;
+    -o-box-shadow: -3px 2px #010101;
+}
+
+.rightButton {
+    box-shadow: -3px 2px #010101;
+    -webkit-box-shadow: -3px 2px #010101;
+    -moz-box-shadow: -3px 2px #010101;
+    -o-box-shadow: -3px 2px #010101;
+
+    border-top-right-radius: 15%;
+    -webkit-border-top-right-radius: 15%;
+    -moz-border-top-right-radius: 15%;
+    -o-border-top-right-radius: 15%;
+
+    border-bottom-right-radius: 15%;
+    -webkit-border-bottom-right-radius: 15%;
+    -moz-border-bottom-right-radius: 15%;
+    -o-border-bottom-right-radius: 15%;
+}
+
+.rightButton:active {
+    box-shadow: -2px 1px #010101;
+    -webkit-box-shadow: -2px 1px #010101;
+    -moz-box-shadow: -2px 1px #010101;
+    -o-box-shadow: -2px 1px #010101;
+
+    transform: translateY(2%);
+}
+
+.bottomButton {
+    z-index: 1;
+    
+    box-shadow: -3px 2px #010101;
+    -webkit-box-shadow: -3px 2px #010101;
+    -moz-box-shadow: -3px 2px #010101;
+    -o-box-shadow: -3px 2px #010101;
+
+    border-bottom-left-radius: 15%;
+    -webkit-border-bottom-left-radius: 15%;
+    -moz-border-bottom-left-radius: 15%;
+    -o-border-bottom-left-radius: 15%;
+
+    border-bottom-right-radius: 15%;
+    -webkit-border-bottom-right-radius: 15%;
+    -moz-border-bottom-right-radius: 15%;
+    -o-border-bottom-right-radius: 15%;
+}
+
+.bottomButton:active {
+    box-shadow: -2px 1px #010101;
+    -webkit-box-shadow: -2px 1px #010101;
+    -moz-box-shadow: -2px 1px #010101;
+    -o-box-shadow: -2px 1px #010101;
+
+    transform: translateX(-1%);
+}
+
+#upT {
+   height: 50%;
+}
+
+#downT {
+    height: 50%;
+    transform: rotate(180deg);
+    background-color: transparent;
+}
+
+#leftT {
+    height: 50%;
+    transform: rotate(-90deg);
+
+}
+
+#rightT {
+    height: 50%;
+    transform: rotate(90deg);
+}
+
+#midCircle {
+    width: 60%;
+    height: 60%;
+
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -o-border-radius: 100%;
+
+    background: radial-gradient(#111, #222);
+    background: -webkit-radial-gradient(#111, #222);
+    background: -moz-radial-gradient(#111, #222);
+    background: -o-radial-gradient(#111, #222);
+}
