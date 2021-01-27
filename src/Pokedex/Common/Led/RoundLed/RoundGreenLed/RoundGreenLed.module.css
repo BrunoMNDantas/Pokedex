@@ -1,0 +1,13 @@
+.off {
+    background: radial-gradient(#70a04e, #35ac02);
+    background: -webkit-radial-gradient(#70a04e, #35ac02);
+    background: -moz-radial-gradient(#70a04e, #35ac02);
+    background: -o-radial-gradient(#70a04e, #35ac02);
+}
+
+.on {
+    background: radial-gradient(#b0fb7b, #50fb05);
+    background: -webkit-radial-gradient(#b0fb7b, #50fb05);
+    background: -moz-radial-gradient(#b0fb7b, #50fb05);
+    background: -o-radial-gradient(#b0fb7b, #50fb05);
+}
