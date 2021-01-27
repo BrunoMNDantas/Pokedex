@@ -1,0 +1,20 @@
+#header {
+    display: flex;
+}
+
+#redLed, #greenLed, #yellowLed {
+    width: 8%;
+}
+
+#glass {
+    width: 25%;
+}
+
+#redLed, #yellowLed, #greenLed, #glass {
+    margin: 3%;
+}
+
+#glass {
+    margin: 5%;
+    margin-right: 10%;
+}
