@@ -1,0 +1,30 @@
+#screen {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 98%; /*compensate border*/
+    height: 98%; /*compensate border*/
+
+    background-color: #fff;
+    border: 3px solid #494949;
+
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+  
+#screen img {
+    height: 90%;
+}
+
+.show {
+    animation: grow 1s alternate ease-in;
+}
+
+@keyframes grow {
+    0%   {transform: scale(.5);}
+    100% {transform: scale(1);}
+}
