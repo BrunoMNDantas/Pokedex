@@ -1,0 +1,27 @@
+import React, { Component } from 'react'
+import RoundBlueButton from '../../Common/Button/RoundButton/RoundBlueButton/RoundBlueButton'
+import BarGreenButton from '../../Common/Button/BarButton/BarGreenButton/BarGreenButton'
+import BarOrangeButton from '../../Common/Button/BarButton/BarOrangeButton/BarOrangeButton'
+import CrossButton from '../../Common/Button/CrossButton/CrossButton'
+import styles from './Actions.module.css'
+
+class Actions extends Component {
+    render() {
+        return (
+            <div id={styles.actions}>
+                <div id={styles.roundButton}>
+                    <RoundBlueButton />
+                </div>
+                <div id={styles.barButtons}>
+                    <BarOrangeButton />
+                    <BarGreenButton />
+                </div>
+                <div id={styles.crossButton}>
+                    <CrossButton />
+                </div>
+            </div>
+        )
+    }
+}
+
+export default Actions
