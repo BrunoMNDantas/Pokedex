@@ -1,0 +1,9 @@
+#button > div {
+    width: 100%;
+    padding-top: 100%;
+
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -o-border-radius: 100%;   
+}
