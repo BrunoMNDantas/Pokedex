@@ -3,11 +3,11 @@
 }
 
 #redLed, #greenLed, #yellowLed {
-    width: 8%;
+    width: 11%;
 }
 
 #glass {
-    width: 25%;
+    width: 32%;
 }
 
 #redLed, #yellowLed, #greenLed, #glass {
@@ -15,6 +15,5 @@
 }
 
 #glass {
-    margin: 5%;
-    margin-right: 10%;
+    margin-right: 15%;
 }
