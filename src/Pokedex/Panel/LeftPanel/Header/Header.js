@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Glass from './Glass/Glass'
-import RoundRedLed from '../../Common/Led/RoundLed/RoundRedLed/RoundRedLed'
-import RoundYellowLed from '../../Common/Led/RoundLed/RoundYellowLed/RoundYellowLed'
-import RoundGreenLed from '../../Common/Led/RoundLed/RoundGreenLed/RoundGreenLed'
+import RoundRedLed from '../../../Common/Led/RoundLed/RoundRedLed/RoundRedLed'
+import RoundYellowLed from '../../../Common/Led/RoundLed/RoundYellowLed/RoundYellowLed'
+import RoundGreenLed from '../../../Common/Led/RoundLed/RoundGreenLed/RoundGreenLed'
 import styles from './Header.module.css'
 
 class Header extends Component {

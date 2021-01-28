@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import RoundBlueButton from '../../Common/Button/RoundButton/RoundBlueButton/RoundBlueButton'
-import BarGreenButton from '../../Common/Button/BarButton/BarGreenButton/BarGreenButton'
-import BarOrangeButton from '../../Common/Button/BarButton/BarOrangeButton/BarOrangeButton'
-import CrossButton from '../../Common/Button/CrossButton/CrossButton'
+import RoundBlueButton from '../../../Common/Button/RoundButton/RoundBlueButton/RoundBlueButton'
+import BarGreenButton from '../../../Common/Button/BarButton/BarGreenButton/BarGreenButton'
+import BarOrangeButton from '../../../Common/Button/BarButton/BarOrangeButton/BarOrangeButton'
+import CrossButton from '../../../Common/Button/CrossButton/CrossButton'
 import styles from './Actions.module.css'
 
 class Actions extends Component {

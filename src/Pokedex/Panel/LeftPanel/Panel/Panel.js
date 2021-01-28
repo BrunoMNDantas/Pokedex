@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Subject } from 'rxjs';
-import DotRedLed from '../../Common/Led/DotLed/DotRedLed/DotRedLed'
-import RoundRedButton from '../../Common/Button/RoundButton/RoundRedButton/RoundRedButton'
+import DotRedLed from '../../../Common/Led/DotLed/DotRedLed/DotRedLed'
+import RoundRedButton from '../../../Common/Button/RoundButton/RoundRedButton/RoundRedButton'
 import Screen from './Screen/Screen'
 import Speaker from './Speaker/Speaker'
 import styles from './Panel.module.css'
