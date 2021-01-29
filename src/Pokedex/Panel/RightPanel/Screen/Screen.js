@@ -5,12 +5,10 @@ class Screen extends Component {
     render() {
         return this.props.pokemon ? (
             <div id={styles.screen}>
+                <strong>Number:</strong> {this.props.pokemon.number}<br />
                 <strong>Name:</strong> {this.props.pokemon.name}<br />
-                <strong>Type:</strong> {this.props.pokemon.type}<br />
-                <strong>Height:</strong> {this.props.pokemon.height}<br />
+                <strong>Type:</strong> {this.props.pokemon.types.reduce((a,b) => a + " | " + b)}<br />
                 <strong>Weight:</strong> {this.props.pokemon.weight}<br /><br />
-                <strong>{this.props.pokemon.nickname}</strong><br />
-                {this.props.pokemon.description}
             </div>
         ) : (
                 <div id={styles.screen}>

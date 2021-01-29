@@ -56,7 +56,7 @@ class Pokedex extends Component {
                 pokemon.image = poke.sprites.front_default
                 pokemon.front = poke.sprites.front_default
                 pokemon.back = poke.sprites.back_default
-                pokemon.types = poke.types.map(t => t.name)
+                pokemon.types = poke.types.map(t => t.type.name)
                 pokemon.weight = poke.weight
 
                 this.setState({
