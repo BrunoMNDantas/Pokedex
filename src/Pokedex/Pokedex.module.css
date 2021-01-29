@@ -1,0 +1,58 @@
+#pokedex {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+}
+
+#left {
+    width: 53%;
+    height: 100%;
+
+    position: relative;
+}
+
+#leftCover {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    
+    z-index: 1;
+}
+
+#leftPanel {
+    width: 80%;
+    height: 95%;
+
+    margin-top: 2%;
+    margin-left: 2%;
+
+    position: absolute;
+    z-index: 1;
+}
+
+#right {
+    width: 47%;
+    height: 100%;
+
+    position: relative;
+}
+
+#rightCover {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+}
+
+#rightPanel {
+    width: 88%;
+    height: 69%;
+
+    margin-top: 38%;
+    margin-left: 6%;
+
+    position: absolute;
+    z-index: 1;
+}
