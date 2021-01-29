@@ -17,7 +17,10 @@ class Actions extends Component {
                     <BarGreenButton />
                 </div>
                 <div id={styles.crossButton}>
-                    <CrossButton />
+                    <CrossButton onTopClick={this.props.onTopClick}
+                        onBottomClick={this.props.onBottomClick}
+                        onLeftClick={this.props.onLeftClick}
+                        onRightClick={this.props.onRightClick} />
                 </div>
             </div>
         )
