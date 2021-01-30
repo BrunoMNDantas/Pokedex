@@ -59,7 +59,7 @@ class Pokedex extends Component {
                 return {
                     number: number,
                     name: poke.name,
-                    image: null,
+                    image: poke.sprites.front_default,
                     front: poke.sprites.front_default,
                     back: poke.sprites.back_default,
                     types: poke.types.map(t => t.type.name),
@@ -70,6 +70,14 @@ class Pokedex extends Component {
                 this.getPokemonImageUrl(pokemon.number, pokemon.name)
                     .then(imageUrl => {
                         pokemon.image = imageUrl
+
+                        this.setState({
+                            pokemonNumber: number,
+                            pokemon: pokemon
+                        })
+                    })
+                    .catch(ex => {
+                        console.error(ex)
 
                         this.setState({
                             pokemonNumber: number,
