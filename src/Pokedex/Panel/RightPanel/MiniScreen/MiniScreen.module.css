@@ -22,8 +22,11 @@
 #screen > img {
     height: 80%;
 }
+
 .show {
-    animation: grow 1s alternate ease-in;
+    animation: grow 1.5s ease;
+    -moz-animation: grow 1.5s ease;
+    -webkit-animation: grow 1.5s ease;
 }
 
 @keyframes grow {
