@@ -4,13 +4,20 @@ import LeftCover from './Cover/LeftCover/LeftCover'
 import RightCover from './Cover/RightCover/RightCover'
 import RightPanel from './Panel/RightPanel/RightPanel'
 import LeftPanel from './Panel/LeftPanel/LeftPanel'
+import fetchJsonp from 'fetch-jsonp'
 const Dex = require("pokeapi-js-wrapper")
+
 
 
 const MAX_POKEMON_NUMBER = 898
 const MIN_POKEMON_NUMBER = 1
+const INITIAL_POKEMON_NUMBER = 1
+
+
 
 class Pokedex extends Component {
+
+    pokedex = new Dex.Pokedex()
 
     constructor(props) {
         super(props)
@@ -21,7 +28,7 @@ class Pokedex extends Component {
     }
 
     componentDidMount() {
-        this.loadPokemon(1)
+        this.loadPokemon(INITIAL_POKEMON_NUMBER)
     }
 
     loadNextPokemon() {
@@ -45,24 +52,65 @@ class Pokedex extends Component {
         })
 
         //Just to see some animation while loading
-        await this.sleep(3000)
+        await this.sleep(2000)
 
-        let pokemon = {}
-        let pokedex = new Dex.Pokedex()
-        this.currentRequest = pokedex.getPokemonByName(number)
+        this.pokedex.getPokemonByName(number)
             .then(poke => {
-                pokemon.number = number
-                pokemon.name = poke.name
-                pokemon.image = poke.sprites.front_default
-                pokemon.front = poke.sprites.front_default
-                pokemon.back = poke.sprites.back_default
-                pokemon.types = poke.types.map(t => t.type.name)
-                pokemon.weight = poke.weight
+                return {
+                    number: number,
+                    name: poke.name,
+                    image: null,
+                    front: poke.sprites.front_default,
+                    back: poke.sprites.back_default,
+                    types: poke.types.map(t => t.type.name),
+                    weight: poke.weight
+                }
+            })
+            .then(pokemon => {
+                this.getPokemonImageUrl(pokemon.number, pokemon.name)
+                    .then(imageUrl => {
+                        pokemon.image = imageUrl
 
-                this.setState({
-                    pokemonNumber: number,
-                    pokemon: pokemon
-                })
+                        this.setState({
+                            pokemonNumber: number,
+                            pokemon: pokemon
+                        })
+                    })
+            })
+    }
+
+    getPokemonImageUrl(number, name) {
+
+        let url = "https://bulbapedia.bulbagarden.net/w/api.php?action=query&prop=images&format=json&titles=" + name + "_(Pokémon)"
+        return fetchJsonp(url)
+            .then(response => response.json())
+            .then(result => {
+                let images = []
+
+                let pages = result.query.pages
+                let pagesIds = Object.keys(pages)
+
+                pagesIds.forEach(id => pages[id].images.forEach(i => images.push(i)))
+
+                let image = images.filter(image => {
+                    let title = image.title.toLowerCase()
+                    return title.includes(number) && title.includes(name.toLowerCase())
+                })[0]
+
+                return image.title
+            })
+            .then(title => {
+                title = title.replace(" ", "_")
+                let url = "https://bulbapedia.bulbagarden.net/w/api.php?action=query&prop=imageinfo&iiprop=url&format=json&titles=" + title
+
+                return fetchJsonp(url)
+                    .then(response => response.json())
+                    .then(result => {
+                        let pages = result.query.pages
+                        let pageId = Object.keys(pages)[0]
+                        let info = pages[pageId].imageinfo[0]
+                        return info.url
+                    })
             })
     }
 
