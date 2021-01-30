@@ -94,7 +94,7 @@ class Pokedex extends Component {
 
                 let image = images.filter(image => {
                     let title = image.title.toLowerCase()
-                    return title.includes(number) && title.includes(name.toLowerCase())
+                    return title.includes(number) && title.includes(name.toLowerCase()+".png")
                 })[0]
 
                 return image.title
