@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { Component } from 'react'
 import styles from './Pokedex.module.css'
 import LeftCover from './Cover/LeftCover/LeftCover'
 import RightCover from './Cover/RightCover/RightCover'
@@ -32,13 +32,11 @@ class Pokedex extends Component {
     }
 
     loadNextPokemon() {
-        if (this.state.pokemonNumber < MAX_POKEMON_NUMBER)
-            this.loadPokemon(this.state.pokemonNumber + 1)
+        this.loadPokemon(this.state.pokemonNumber + 1)
     }
 
     loadPreviousPokemon() {
-        if (this.state.pokemonNumber > MIN_POKEMON_NUMBER)
-            this.loadPokemon(this.state.pokemonNumber - 1)
+        this.loadPokemon(this.state.pokemonNumber - 1)
     }
 
     async sleep(ms) {
@@ -46,6 +44,9 @@ class Pokedex extends Component {
     }
 
     async loadPokemon(number) {
+        if (number > MAX_POKEMON_NUMBER || number < MIN_POKEMON_NUMBER)
+            return
+
         this.setState({
             pokemonNumber: number,
             pokemon: null
@@ -54,7 +55,10 @@ class Pokedex extends Component {
         //Just to see some animation while loading
         await this.sleep(2000)
 
-        this.pokedex.getPokemonByName(number)
+        var controller = new AbortController();
+        var signal = controller.signal;
+
+        this.pokedex.getPokemonByName(number, { signal })
             .then(poke => {
                 return {
                     number: number,
@@ -71,24 +75,25 @@ class Pokedex extends Component {
                     .then(imageUrl => {
                         pokemon.image = imageUrl
 
-                        this.setState({
-                            pokemonNumber: number,
-                            pokemon: pokemon
-                        })
+                        if (this.state.pokemonNumber === pokemon.number)
+                            this.setState({
+                                pokemonNumber: number,
+                                pokemon: pokemon
+                            })
                     })
                     .catch(ex => {
                         console.error(ex)
-
-                        this.setState({
-                            pokemonNumber: number,
-                            pokemon: pokemon
-                        })
+                        
+                        if (this.state.pokemonNumber === pokemon.number)
+                            this.setState({
+                                pokemonNumber: number,
+                                pokemon: pokemon
+                            })
                     })
             })
     }
 
     getPokemonImageUrl(number, name) {
-
         let url = "https://bulbapedia.bulbagarden.net/w/api.php?action=query&prop=images&format=json&titles=" + name + "_(Pokémon)"
         return fetchJsonp(url)
             .then(response => response.json())
@@ -102,7 +107,7 @@ class Pokedex extends Component {
 
                 let image = images.filter(image => {
                     let title = image.title.toLowerCase()
-                    return title.includes(number) && title.includes(name.toLowerCase()+".png")
+                    return title.includes(number) && title.includes(name.toLowerCase() + ".png")
                 })[0]
 
                 return image.title
@@ -131,6 +136,7 @@ class Pokedex extends Component {
                     </div>
                     <div id={styles.leftPanel}>
                         <LeftPanel pokemon={this.state.pokemon}
+                            loadPokemon={number => this.loadPokemon(number)}
                             onTopClick={() => this.loadNextPokemon()}
                             onBottomClick={() => this.loadPreviousPokemon()}
                             onLeftClick={() => this.loadPreviousPokemon()}

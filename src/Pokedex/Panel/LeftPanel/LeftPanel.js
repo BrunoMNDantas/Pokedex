@@ -15,7 +15,9 @@ class LeftPanel extends Component {
                     <Panel pokemon={this.props.pokemon} />
                 </div>
                 <div id={styles.actions}>
-                    <Actions onTopClick={this.props.onTopClick}
+                    <Actions pokemon={this.props.pokemon}
+                        loadPokemon={this.props.loadPokemon}
+                        onTopClick={this.props.onTopClick}
                         onBottomClick={this.props.onBottomClick}
                         onLeftClick={this.props.onLeftClick}
                         onRightClick={this.props.onRightClick} />

@@ -10,12 +10,27 @@
     height: 100%;
 }
 
-#barButtons { 
+#middleCol {
     width: 43%;
     height: 100%;
 
     display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#barButtons { 
+    width: 100%;
+    height: 40%;
+
+    display: flex;
     padding-top: 4%;
+}
+
+#numberInput {
+    width: 80%;
+    height: 40%;
 }
 
 #barButtons > div {
