@@ -44,8 +44,10 @@ class Pokedex extends Component {
     }
 
     async loadPokemon(number) {
-        if (number > MAX_POKEMON_NUMBER || number < MIN_POKEMON_NUMBER)
+        if (number > MAX_POKEMON_NUMBER || number < MIN_POKEMON_NUMBER) {
+            window.alert("#" + number + " doesn't exist")
             return
+        }
 
         this.setState({
             pokemonNumber: number,
@@ -53,12 +55,24 @@ class Pokedex extends Component {
         })
 
         //Just to see some animation while loading
-        await this.sleep(2000)
+        await this.sleep(1000)
 
-        var controller = new AbortController();
-        var signal = controller.signal;
+        this.getPokemon(number)
+            .then(pokemon => {
+                if (this.state.pokemonNumber === number)
+                    this.setState({
+                        pokemonNumber: number,
+                        pokemon: pokemon
+                    })
+            })
+            .catch(ex => {
+                window.alert("Something wnet wrong!")
+                console.error(ex)
+            })
+    }
 
-        this.pokedex.getPokemonByName(number, { signal })
+    getPokemon(number) {
+        return this.pokedex.getPokemonByName(number)
             .then(poke => {
                 return {
                     number: number,
@@ -71,49 +85,22 @@ class Pokedex extends Component {
                 }
             })
             .then(pokemon => {
-                this.getPokemonImageUrl(pokemon.number, pokemon.name)
+                return this.getPokemonImageUrl(pokemon.number, pokemon.name)
                     .then(imageUrl => {
                         pokemon.image = imageUrl
-
-                        if (this.state.pokemonNumber === pokemon.number)
-                            this.setState({
-                                pokemonNumber: number,
-                                pokemon: pokemon
-                            })
+                        return pokemon
                     })
                     .catch(ex => {
                         console.error(ex)
-                        
-                        if (this.state.pokemonNumber === pokemon.number)
-                            this.setState({
-                                pokemonNumber: number,
-                                pokemon: pokemon
-                            })
+                        return pokemon
                     })
             })
     }
 
     getPokemonImageUrl(number, name) {
-        let url = "https://bulbapedia.bulbagarden.net/w/api.php?action=query&prop=images&format=json&titles=" + name + "_(Pokémon)"
-        return fetchJsonp(url)
-            .then(response => response.json())
-            .then(result => {
-                let images = []
-
-                let pages = result.query.pages
-                let pagesIds = Object.keys(pages)
-
-                pagesIds.forEach(id => pages[id].images.forEach(i => images.push(i)))
-
-                let image = images.filter(image => {
-                    let title = image.title.toLowerCase()
-                    return title.includes(number) && title.includes(name.toLowerCase() + ".png")
-                })[0]
-
-                return image.title
-            })
-            .then(title => {
-                title = title.replace(" ", "_")
+        return this.getBulbapediaImage(number, name)
+            .then(image => {
+                let title = image.title.replace(" ", "_")
                 let url = "https://bulbapedia.bulbagarden.net/w/api.php?action=query&prop=imageinfo&iiprop=url&format=json&titles=" + title
 
                 return fetchJsonp(url)
@@ -126,6 +113,40 @@ class Pokedex extends Component {
                     })
             })
     }
+
+    getBulbapediaImage(number, name, imcontinue = null) {
+        let url = "https://bulbapedia.bulbagarden.net/w/api.php?action=query&prop=images&format=json&titles=" + name + "_(Pokémon)"
+
+        if (imcontinue)
+            url = url + "&imcontinue=" + imcontinue
+
+        return fetchJsonp(url)
+            .then(response => response.json())
+            .then(result => {
+                let pages = result.query.pages
+                let pagesIds = Object.keys(pages)
+
+                let images = pagesIds.map(id => pages[id].images).flat()
+
+                let image = this.selectBulbapediaImage(number, name, images)
+
+                if (!image && result.continue?.imcontinue)
+                    return this.getBulbapediaImage(number, name, result.continue.imcontinue)
+                else
+                    return image
+            })
+    }
+
+    selectBulbapediaImage(number, name, images) {
+        name = name.toLowerCase()
+        images = images.filter(image => {
+            let title = image.title.toLowerCase()
+            return title.includes(number) && title.includes(name + ".png")
+        })
+
+        return images[0]
+    }
+
 
     render() {
         return (
