@@ -1,4 +1,3 @@
-import fetchJsonp from 'fetch-jsonp'
 const Dex = require("pokeapi-js-wrapper")
 
 let IMAGE_URL = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{POKEMON_NUMBER}.png"
