@@ -31,7 +31,7 @@ class Panel extends Component {
         if (props.pokemon) {
             this.setState({
                 ledsOn: true,
-                pokemonImage: props.pokemon.image
+                pokemonImage: props.pokemon.images.default
             })
             this.playSound.next()
         } else {

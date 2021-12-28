@@ -11,11 +11,13 @@ export default class PokemonService {
                 return {
                     number: number,
                     name: poke.name,
-                    image: IMAGE_URL.replace("{POKEMON_NUMBER}",  ('000' + number).substr(-3)),
-                    front: poke.sprites.front_default,
-                    back: poke.sprites.back_default,
                     types: poke.types.map((t : any) => t.type.name),
-                    weight: poke.weight
+                    weight: poke.weight,
+                    images: {
+                        default: IMAGE_URL.replace("{POKEMON_NUMBER}",  ('000' + number).substr(-3)),
+                        front: poke.sprites.front_default,
+                        back: poke.sprites.back_default
+                    }
                 }
             })
     }

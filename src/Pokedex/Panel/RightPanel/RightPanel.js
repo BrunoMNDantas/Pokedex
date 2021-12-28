@@ -43,8 +43,8 @@ class RightPanel extends Component {
                     </div>
                 </div>
                 <div id={styles.fourthRow}>
-                    <MiniScreen image={this.props.pokemon?.front} />
-                    <MiniScreen image={this.props.pokemon?.back} />
+                    <MiniScreen image={this.props.pokemon?.images.front} />
+                    <MiniScreen image={this.props.pokemon?.images.back} />
                 </div>
             </div>
         )
