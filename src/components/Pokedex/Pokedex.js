@@ -15,8 +15,7 @@ function Pokedex () {
     const dispatch = useDispatch()
     const loading = useSelector(state => state.pokemon.loading)
     const currentPokemon = useSelector(state => state.pokemon.currentPokemon) 
-    
-    const sleep = async (ms) =>  new Promise(resolve => setTimeout(resolve, ms))
+
     const loadNextPokemon = () => loadPokemon(currentPokemon.number + 1)
     const loadPreviousPokemon = () => loadPokemon(currentPokemon.number - 1)
     const loadPokemon = (number) => {

@@ -1,24 +1,17 @@
-import { Component } from 'react'
 import styles from './Button.module.css'
 
-class Button extends Component {
+export default function Button(props) {
+    const audio = new Audio(process.env.PUBLIC_URL + '/audio/click.mp3')
 
-    audio = new Audio(process.env.PUBLIC_URL + '/audio/click.mp3')
-
-    handleClick() {
-        this.audio.play()
-
-        if (this.props.onClick)
-            this.props.onClick()
+    const handleClick = () => {
+        audio.play()
+        if (props.onClick)
+            props.onClick()
     }
 
-    render() {
-        return (
-            <div id={styles.button} onClick={() => this.handleClick()} className={this.props.className}>
-                {this.props.children}
-            </div>
-        )
-    }
+    return (
+        <div id={styles.button} onClick={() => handleClick()} className={props.className}>
+            {props.children}
+        </div>
+    )
 }
-
-export default Button

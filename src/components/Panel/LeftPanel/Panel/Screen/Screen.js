@@ -1,14 +1,9 @@
-import React, { Component } from 'react'
 import styles from './Screen.module.css'
 
-class Screen extends Component {
-    render() {
-        return (
-            <div id={styles.screen}>
-                <img className={this.props.pokemonImage ?  styles.show : ""} src={this.props.pokemonImage} alt=""/>
-            </div>
-        )
-    }
+export default function Screen(props) {
+    return (
+        <div id={styles.screen}>
+            <img className={props.pokemonImage ?  styles.show : ""} src={props.pokemonImage} alt=""/>
+        </div>
+    )
 }
-
-export default Screen

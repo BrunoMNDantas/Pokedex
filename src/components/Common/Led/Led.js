@@ -1,12 +1,3 @@
-import { Component } from 'react'
-
-class Led extends Component {
-    
-    render() {
-        return (
-            <div className={this.props.on ? this.props.onClass : this.props.offClass}/>
-        )
-    }
+export default function Led(props) {   
+    return <div className={props.on ? props.onClass : props.offClass}/>
 }
-
-export default Led

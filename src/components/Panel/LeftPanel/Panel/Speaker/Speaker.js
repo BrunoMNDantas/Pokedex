@@ -1,57 +1,38 @@
-import React, { Component } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './Speaker.module.css'
 
-class Speaker extends Component {
+export default function Speaker(props) {
 
-    audio = new Audio(process.env.PUBLIC_URL + '/audio/plink.mp3')
-    subscription;
+    const audio = new Audio(process.env.PUBLIC_URL + '/audio/plink.mp3')
+    const [subscription, setSubscription] = useState();
+    const [play, setPlay] = useState(false)
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            play: false
-        }
-    }
-
-    componentDidMount() {
-        this.updateState(this.props)
-    }
-
-    componentWillReceiveProps(newProps) {
-        this.updateState(newProps)
-    }
-
-    componentWillUnmount() {
-        if (this.subscription)
-            this.subscription.unsubscribe()
-    }
-
-    updateState(props) {
-        if (this.subscription)
-            this.subscription.unsubscribe()
+    useEffect(() => {
+        if (subscription)
+            subscription.unsubscribe()
 
         if (props.play) {
-            this.subscription = props.play.subscribe({
+            setSubscription(props.play.subscribe({
                 next: () => {
-                    this.audio.play()
-                    this.setState({ play: true })
-                    setTimeout(() => this.setState({ play: false }), 1500)
+                    audio.play()
+                    setPlay(true)
+                    setTimeout(() => setPlay(false), 1500)
                 }
-            })
+            }))
         }
+        
+        return () => {
+            if (subscription)
+                subscription.unsubscribe()
+        }
+    },[play, props]);
 
-    }
-
-    render() {
-        return (
-            <div id={styles.speaker} className={this.state.play ? styles.play : ""}>
-                <div className={styles.hole}></div>
-                <div className={styles.hole}></div>
-                <div className={styles.hole}></div>
-                <div className={styles.hole}></div>
-            </div>
-        )
-    }
+    return (
+        <div id={styles.speaker} className={play ? styles.play : ""}>
+            <div className={styles.hole}></div>
+            <div className={styles.hole}></div>
+            <div className={styles.hole}></div>
+            <div className={styles.hole}></div>
+        </div>
+    )
 }
-
-export default Speaker

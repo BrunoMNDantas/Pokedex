@@ -1,37 +1,26 @@
-import { Component } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './NumberInput.module.css'
 
-class NumberInput extends Component {
+export default function NumberInput(props) {
+    const [number, setNumber] = useState(props.number)
+    useEffect(() => { setNumber(props.number)}, [props.number] )
 
-    constructor(props) {
-        super(props)
-        this.state = { number: props.number }
+    const handleChange = event => {
+        setNumber(Number(event.target.value))
     }
 
-    componentWillReceiveProps(newProps) {
-        this.setState({ number: newProps.number })
-    }
-
-    handleChange(event) {
-        this.setState({ number: Number(event.target.value) });
-    }
-
-    handleSubmit(event) {
-        if (this.props.onNewValue)
-            this.props.onNewValue(this.state.number)
+    const handleSubmit = event => {
+        if (props.onNewValue)
+            props.onNewValue(number)
 
         event.preventDefault()
     }
 
-    render() {
-        return (
-            <form id={styles.container} onSubmit={event => this.handleSubmit(event)}>
-                <input type="number"
-                    value={this.state.number ? this.state.number : ""}
-                    onChange={event => this.handleChange(event)}></input>
-            </form>
-        )
-    }
+    return (
+        <form id={styles.container} onSubmit={event => handleSubmit(event)}>
+            <input type="number"
+                value={number ? number : ""}
+                onChange={event => handleChange(event)}></input>
+        </form>
+    )
 }
-
-export default NumberInput
