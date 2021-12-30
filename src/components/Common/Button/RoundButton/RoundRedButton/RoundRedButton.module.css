@@ -4,10 +4,10 @@
     -moz-box-shadow: -3px 2px #5e0000;
     -o-box-shadow: -3px 2px #5e0000;
 
-    background: linear-gradient(top, #c00d0d 0%, #8b0000 80%);
-    background: -moz-linear-gradient(top, #c00d0d 0%, #8b0000 80%);
-    background: -o-linear-gradient(top, #c00d0d 0%, #8b0000 80%);
-    background: -webkit-linear-gradient(top, #c00d0d 0%, #8b0000 80%);
+    background: linear-gradient(to bottom, #c00d0d 0%, #8b0000 80%);
+    background: -moz-linear-gradient(to bottom, #c00d0d 0%, #8b0000 80%);
+    background: -o-linear-gradient(to bottom, #c00d0d 0%, #8b0000 80%);
+    background: -webkit-linear-gradient(to bottom, #c00d0d 0%, #8b0000 80%);
 }
 
 .button:active {

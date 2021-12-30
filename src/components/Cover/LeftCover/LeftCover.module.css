@@ -98,10 +98,10 @@
 
     z-index: -1;
 
-    background: linear-gradient(left, #8b0000 0%, #c00d0d 50%, #8b0000 100%);	
-    background: -moz-linear-gradient(left, #8b0000 0%, #c00d0d 50%, #8b0000 100%);
-    background: -o-linear-gradient(left, #8b0000 0%, #c00d0d 50%, #8b0000 100%);
-    background: -webkit-linear-gradient(left, #8b0000 0%, #c00d0d 50%, #8b0000 100%);
+    background: linear-gradient(to right, #8b0000 0%, #c00d0d 50%, #8b0000 100%);	
+    background: -moz-linear-gradient(to right, #8b0000 0%, #c00d0d 50%, #8b0000 100%);
+    background: -o-linear-gradient(to right, #8b0000 0%, #c00d0d 50%, #8b0000 100%);
+    background: -webkit-linear-gradient(to right, #8b0000 0%, #c00d0d 50%, #8b0000 100%);
 
     box-shadow: -10px 9px #5e0000;
     -moz-box-shadow: -10px 9px #5e0000;
