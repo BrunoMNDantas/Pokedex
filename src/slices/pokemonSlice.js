@@ -6,7 +6,9 @@ const sleep = async (ms) =>  new Promise(resolve => setTimeout(resolve, ms))
 
 export const loadPokemon = createAsyncThunk('pokemon/loadPokemon', async number => {
   await sleep(REQUEST_SLEEP_TIME)
+
   const pokemon = await getPokemon(number)
+
   return pokemon
 })
 

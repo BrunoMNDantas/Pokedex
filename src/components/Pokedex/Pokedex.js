@@ -5,7 +5,7 @@ import RightCover from '../Cover/RightCover/RightCover'
 import RightPanel from '../Panel/RightPanel/RightPanel'
 import LeftPanel from '../Panel/LeftPanel/LeftPanel'
 import { loadPokemon as fetchPokemon } from '../../slices/pokemonSlice'
-import { INITIAL_POKEMON_NUMBER, MIN_POKEMON_NUMBER, MAX_POKEMON_NUMBER } from '../../app/configs'
+import { INITIAL_POKEMON_NUMBER } from '../../app/configs'
 
 function Pokedex () {
     const dispatch = useDispatch()
@@ -15,11 +15,6 @@ function Pokedex () {
     const loadNextPokemon = () => loadPokemon(currentPokemon.number + 1)
     const loadPreviousPokemon = () => loadPokemon(currentPokemon.number - 1)
     const loadPokemon = (number) => {
-        if (number > MAX_POKEMON_NUMBER || number < MIN_POKEMON_NUMBER) {
-            window.alert("#" + number + " doesn't exist")
-            return;
-        }
-
         if(!loading) {
             dispatch(fetchPokemon(number))                
         } else {
