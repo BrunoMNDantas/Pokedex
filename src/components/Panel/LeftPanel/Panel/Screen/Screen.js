@@ -5,7 +5,7 @@ class Screen extends Component {
     render() {
         return (
             <div id={styles.screen}>
-                <img className={this.props.pokemonImage ?  styles.show : ""} src={this.props.pokemonImage}/>
+                <img className={this.props.pokemonImage ?  styles.show : ""} src={this.props.pokemonImage} alt=""/>
             </div>
         )
     }

@@ -5,7 +5,7 @@ class MiniScreen extends Component {
     render() {
         return (
             <div id={styles.screen}>
-                <img className={this.props.image ? styles.show : ""} src={this.props.image}></img>                
+                <img className={this.props.image ? styles.show : ""} src={this.props.image} alt=""></img>                
             </div>
         )
     }
