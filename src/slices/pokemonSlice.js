@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { getPokemon } from './PokemonService'
-import { REQUEST_SLEEP_TIME } from '../app/configs'
+import { MIN_POKEMON_NUMBER, MAX_POKEMON_NUMBER, REQUEST_SLEEP_TIME } from '../app/configs'
 
 const sleep = async (ms) =>  new Promise(resolve => setTimeout(resolve, ms))
 const fetch = async (number) => {
@@ -16,12 +16,20 @@ export const loadPokemon = createAsyncThunk('pokemon/loadPokemon', async number 
 })
 
 export const loadNextPokemon = createAsyncThunk('pokemon/loadPokemon', async (_, thunkAPI) => {
-  const number = thunkAPI.getState().pokemon.previousPokemon?.number + 1
+  let number = thunkAPI.getState().pokemon.previousPokemon?.number + 1
+
+  if(number > MAX_POKEMON_NUMBER)
+    number = MIN_POKEMON_NUMBER
+
   return fetch(number)
 })
 
 export const loadPreviousPokemon = createAsyncThunk('pokemon/loadPokemon', async (_, thunkAPI) => {
-  const number = thunkAPI.getState().pokemon.previousPokemon?.number - 1
+  let number = thunkAPI.getState().pokemon.previousPokemon?.number - 1
+
+  if(number < MIN_POKEMON_NUMBER)
+    number = MAX_POKEMON_NUMBER
+
   return fetch(number)
 })
 
