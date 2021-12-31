@@ -12,18 +12,15 @@ export default function Panel(props) {
     const pokemon = useSelector(state => state.pokemon.currentPokemon)
     const playSound = new Subject();
     const [ledsOn, setLedsOn] = useState(false);
-    const [pokemonImage, setPokemonImage] = useState();
-
+    
     useEffect(() => {
         if (pokemon) {
             setLedsOn(true)
-            setPokemonImage(pokemon.images.default)
             playSound.next()
         } else {
             setLedsOn(false)
-            setPokemonImage(null)
         }
-    },[ledsOn, pokemonImage, pokemon]);
+    },[pokemon]);
 
     return (
         <div id={styles.panel}>
