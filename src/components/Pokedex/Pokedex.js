@@ -1,4 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 import styles from './Pokedex.module.css'
 import LeftCover from '../Cover/LeftCover/LeftCover'
 import RightCover from '../Cover/RightCover/RightCover'
@@ -9,12 +10,8 @@ import { INITIAL_POKEMON_NUMBER } from '../../app/configs'
 
 function Pokedex () {
     const dispatch = useDispatch()
-    const loading = useSelector(state => state.pokemon.loading)
-    const currentPokemon = useSelector(state => state.pokemon.currentPokemon) 
-
-    if(!currentPokemon && !loading) 
-        dispatch(fetchPokemon(INITIAL_POKEMON_NUMBER))                
-
+    useEffect(() => dispatch(fetchPokemon(INITIAL_POKEMON_NUMBER)), [])
+    
     return (
         <div id={styles.pokedex}>
             <div id={styles.left}>
