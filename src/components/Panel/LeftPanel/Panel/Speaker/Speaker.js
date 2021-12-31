@@ -11,6 +11,25 @@ export default function Speaker(props) {
     const pokemon = useSelector(state => state.pokemon.currentPokemon)
     const { speak, voices } = useSpeechSynthesis();
 
+    const buildText = () => {
+        let name = pokemon.name
+
+        let number = pokemon.number
+
+        let types;
+        if(pokemon.types.length > 1) {
+            types = " types are " + pokemon.types.reduce((a, b) => a + " , " + b)
+            let idx = types.lastIndexOf(",");
+            if (idx >= 0) {
+                types = types.substring(0, idx) + "and" + types.substring(idx);
+            }
+        } else {
+            types = " type is " + pokemon.types[0]
+        }
+
+        return name + " is the number " + number + ". and its " + types
+    }
+
     useEffect(() => {
         if (subscription)
             subscription.unsubscribe()
@@ -18,9 +37,11 @@ export default function Speaker(props) {
         if (props.play) {
             setSubscription(props.play.subscribe({
                 next: () => {
-                    let voice = voices.find(voice => voice.name.indexOf("Google US English") !== -1)
-                    let text = "Number " + pokemon.number + ".\n" + pokemon.name
-                    speak({text: text, voice: voice})
+                    if(pokemon) {
+                        let voice = voices.find(voice => voice.name.indexOf("Google US English") !== -1)
+                        let text = buildText()
+                        speak({text: text, voice: voice, rate: 0.8})
+                    }
 
                     audio.play()
                     setPlay(true)
