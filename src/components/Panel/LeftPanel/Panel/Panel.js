@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 import { Subject } from 'rxjs';
 import DotRedLed from '../../../Common/Led/DotLed/DotRedLed/DotRedLed'
 import RoundRedButton from '../../../Common/Button/RoundButton/RoundRedButton/RoundRedButton'
-import Screen from './Screen/Screen'
 import Speaker from './Speaker/Speaker'
 import styles from './Panel.module.css'
+import DefaultImageDisplayScreen from '../../../Screen/DisplayScreen/DefaultImageDisplayScreen/DefaultImageDisplayScreen';
 
 export default function Panel(props) {
 
@@ -30,7 +30,7 @@ export default function Panel(props) {
                 <div className={styles.led}><DotRedLed on={ledsOn} /></div>
             </div>
             <div id={styles.center}>
-                <div id={styles.screen}><Screen pokemonImage={pokemonImage} /></div>
+                <div id={styles.screen}><DefaultImageDisplayScreen /></div>
             </div>
             <div id={styles.bottom}>
                 <div id={styles.button}><RoundRedButton /></div>

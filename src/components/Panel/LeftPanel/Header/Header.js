@@ -8,13 +8,14 @@ import styles from './Header.module.css'
 
 export default function Header(props) {
     const spinGlass = useSelector(state => state.pokemon.loading) 
+    const pokemon = useSelector(state => state.pokemon.currentPokemon) 
     const [redOn, setRedOn] = useState(false) 
     const [yellowOn, setYellowOn] = useState(false) 
     const [greenOn, setGreenOn] = useState(false) 
     const [timer, setTimer] = useState()
 
     const initTimer = () => {
-        if(!props.pokemon) { 
+        if(!pokemon) { 
             if(!timer) {
                 setTimer(setInterval(() => {
                     if(redOn) {
@@ -51,11 +52,11 @@ export default function Header(props) {
     useEffect(() => {
         initTimer()
         return () => clearTimer()
-    },[spinGlass, redOn, yellowOn, greenOn, timer, props.pokemon]);
+    },[spinGlass, redOn, yellowOn, greenOn, timer]);
 
     return (
         <div id={styles.header}>
-            <div id={styles.glass}><Glass pokemon={props.pokemon} spin={spinGlass}/></div>
+            <div id={styles.glass}><Glass spin={spinGlass}/></div>
             <div id={styles.redLed}><RoundRedLed on={redOn}/></div>
             <div id={styles.yellowLed}><RoundYellowLed on={yellowOn}/></div>
             <div id={styles.greenLed}><RoundGreenLed on={greenOn}/></div>

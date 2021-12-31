@@ -45,7 +45,7 @@ function Pokedex () {
                     <RightCover />
                 </div>
                 <div id={styles.rightPanel}>
-                    <RightPanel pokemon={currentPokemon} />
+                    <RightPanel />
                 </div>
             </div>
         </div>

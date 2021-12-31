@@ -7,7 +7,7 @@ export default function LeftPanel(props) {
     return (
         <div id={styles.container}>
             <div id={styles.header}>
-                <Header pokemon={props.pokemon} />
+                <Header />
             </div>
             <div id={styles.panel}>
                 <Panel pokemon={props.pokemon} />
