@@ -12,16 +12,6 @@ function Pokedex () {
     const loading = useSelector(state => state.pokemon.loading)
     const currentPokemon = useSelector(state => state.pokemon.currentPokemon) 
 
-    const loadNextPokemon = () => loadPokemon(currentPokemon.number + 1)
-    const loadPreviousPokemon = () => loadPokemon(currentPokemon.number - 1)
-    const loadPokemon = (number) => {
-        if(!loading) {
-            dispatch(fetchPokemon(number))                
-        } else {
-            window.alert("Wait while loading!")
-        }
-    }
-
     if(!currentPokemon && !loading) 
         dispatch(fetchPokemon(INITIAL_POKEMON_NUMBER))                
 
@@ -32,12 +22,7 @@ function Pokedex () {
                     <LeftCover />
                 </div>
                 <div id={styles.leftPanel}>
-                    <LeftPanel pokemon={currentPokemon}
-                        loadPokemon={number => loadPokemon(number)}
-                        onTopClick={() => loadNextPokemon()}
-                        onBottomClick={() => loadPreviousPokemon()}
-                        onLeftClick={() => loadPreviousPokemon()}
-                        onRightClick={() => loadNextPokemon()} />
+                    <LeftPanel />
                 </div>
             </div>
             <div id={styles.right}>

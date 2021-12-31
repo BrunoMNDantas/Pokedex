@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import styles from './NumberInput.module.css'
+import { loadPokemon } from '../../../../../slices/pokemonSlice'
 
 export default function NumberInput(props) {
-    const [number, setNumber] = useState(props.number)
-    useEffect(() => { setNumber(props.number)}, [props.number] )
+    const dispatch = useDispatch()
+    const currentNumber = useSelector(state => state.pokemon.currentPokemon?.number)
+
+    const [number, setNumber] = useState(currentNumber)
+
+    useEffect(() => { setNumber(currentNumber)}, [currentNumber] )
 
     const handleChange = event => {
         setNumber(Number(event.target.value))
     }
 
     const handleSubmit = event => {
-        if (props.onNewValue)
-            props.onNewValue(number)
-
+        dispatch(loadPokemon(number))
         event.preventDefault()
     }
 

@@ -3,13 +3,26 @@ import { getPokemon } from './PokemonService'
 import { REQUEST_SLEEP_TIME } from '../app/configs'
 
 const sleep = async (ms) =>  new Promise(resolve => setTimeout(resolve, ms))
-
-export const loadPokemon = createAsyncThunk('pokemon/loadPokemon', async number => {
+const fetch = async (number) => {
   await sleep(REQUEST_SLEEP_TIME)
 
   const pokemon = await getPokemon(number)
 
   return pokemon
+}
+
+export const loadPokemon = createAsyncThunk('pokemon/loadPokemon', async number => {
+  return fetch(number)
+})
+
+export const loadNextPokemon = createAsyncThunk('pokemon/loadPokemon', async (_, thunkAPI) => {
+  const number = thunkAPI.getState().pokemon.previousPokemon?.number + 1
+  return fetch(number)
+})
+
+export const loadPreviousPokemon = createAsyncThunk('pokemon/loadPokemon', async (_, thunkAPI) => {
+  const number = thunkAPI.getState().pokemon.previousPokemon?.number - 1
+  return fetch(number)
 })
 
 export const pokemonSlice = createSlice({
@@ -17,7 +30,8 @@ export const pokemonSlice = createSlice({
 
   initialState: {
     loading: false, 
-    currentPokemon: null
+    currentPokemon: null,
+    previousPokemon: null
   },
 
   reducers: {},
@@ -26,6 +40,7 @@ export const pokemonSlice = createSlice({
     builder
       .addCase(loadPokemon.pending, (state) => {
         state.loading = true
+        state.previousPokemon = state.currentPokemon
         state.currentPokemon = null
       })
       .addCase(loadPokemon.fulfilled, (state, action) => {

@@ -13,12 +13,7 @@ export default function LeftPanel(props) {
                 <Panel pokemon={props.pokemon} />
             </div>
             <div id={styles.actions}>
-                <Actions pokemon={props.pokemon}
-                    loadPokemon={props.loadPokemon}
-                    onTopClick={props.onTopClick}
-                    onBottomClick={props.onBottomClick}
-                    onLeftClick={props.onLeftClick}
-                    onRightClick={props.onRightClick} />
+                <Actions />
             </div>
         </div>
     )

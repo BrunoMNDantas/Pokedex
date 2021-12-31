@@ -1,7 +1,7 @@
 import RoundBlueButton from '../../../Common/Button/RoundButton/RoundBlueButton/RoundBlueButton'
 import BarGreenButton from '../../../Common/Button/BarButton/BarGreenButton/BarGreenButton'
 import BarOrangeButton from '../../../Common/Button/BarButton/BarOrangeButton/BarOrangeButton'
-import CrossButton from '../../../Common/Button/CrossButton/CrossButton'
+import CrossButton from './CrossButton/CrossButton'
 import NumberInput from './NumberInput/NumberInput'
 import styles from './Actions.module.css'
 
@@ -17,14 +17,11 @@ export default function Actions(props) {
                     <BarGreenButton />
                 </div>
                 <div id={styles.numberInput}>
-                    <NumberInput onNewValue={props.loadPokemon} number={props.pokemon?.number}/>
+                    <NumberInput />
                 </div>
             </div>
             <div id={styles.crossButton}>
-                <CrossButton onTopClick={props.onTopClick}
-                    onBottomClick={props.onBottomClick}
-                    onLeftClick={props.onLeftClick}
-                    onRightClick={props.onRightClick} />
+                <CrossButton />
             </div>
         </div>
     )

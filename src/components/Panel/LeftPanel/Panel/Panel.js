@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Subject } from 'rxjs';
 import DotRedLed from '../../../Common/Led/DotLed/DotRedLed/DotRedLed'
 import RoundRedButton from '../../../Common/Button/RoundButton/RoundRedButton/RoundRedButton'
@@ -8,20 +9,21 @@ import DefaultImageDisplayScreen from '../../../Screen/DisplayScreen/DefaultImag
 
 export default function Panel(props) {
 
+    const pokemon = useSelector(state => state.pokemon.currentPokemon)
     const playSound = new Subject();
     const [ledsOn, setLedsOn] = useState(false);
     const [pokemonImage, setPokemonImage] = useState();
 
     useEffect(() => {
-        if (props.pokemon) {
+        if (pokemon) {
             setLedsOn(true)
-            setPokemonImage(props.pokemon.images.default)
+            setPokemonImage(pokemon.images.default)
             playSound.next()
         } else {
             setLedsOn(false)
             setPokemonImage(null)
         }
-    },[ledsOn, pokemonImage, props]);
+    },[ledsOn, pokemonImage, pokemon]);
 
     return (
         <div id={styles.panel}>
