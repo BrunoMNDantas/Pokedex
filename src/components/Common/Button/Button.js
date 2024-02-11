@@ -5,6 +5,10 @@ export default function Button(props) {
 
     const handleClick = () => {
         audio.play()
+        .catch(e => {
+            console.error('Couldn\'t play audio! User has not interacted with document yet.', e);
+        });
+
         if (props.onClick)
             props.onClick()
     }

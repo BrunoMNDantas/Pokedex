@@ -42,8 +42,12 @@ export default function Speaker(props) {
                         let text = buildText()
                         speak({text: text, voice: voice, rate: 0.8})
                     }
-
+                    
                     audio.play()
+                    .catch(e => {
+                        console.error('Couldn\'t play audio! User has not interacted with document yet.', e);
+                    });
+                    
                     setPlay(true)
                     setTimeout(() => setPlay(false), 1500)
                 }
