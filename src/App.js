@@ -6,7 +6,7 @@ class App extends Component {
     render() {
         return (
             <div id={styles.container}>
-                <img id={styles.background} src={process.env.PUBLIC_URL + "/images/background.png"} alt=""></img>
+                
                 <img id={styles.title} src={process.env.PUBLIC_URL + "/images/pokemonLogo.png"} alt=""></img>
                 <div id={styles.wrapper}>
                     <Pokedex />
